@@ -1,14 +1,9 @@
-package com.example.filmeflix.model;
-
-import lombok.Getter;
-import lombok.Setter;
+package com.example.filmeflix.dto;
 
 import java.util.List;
 
-@Getter @Setter
-public class Filme {
+public class FilmeDTO {
 
-    private Long id;
     private String nome;
     private String Diretor;
     private List<String> Atores;

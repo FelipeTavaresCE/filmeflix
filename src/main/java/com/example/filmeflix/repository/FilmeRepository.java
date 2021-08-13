@@ -1,4 +1,7 @@
 package com.example.filmeflix.repository;
 
-public class FilmeRepository {
+import com.example.filmeflix.model.Filme;
+
+public interface FilmeRepository {
+     Filme save(Filme any);
 }
