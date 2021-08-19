@@ -8,9 +8,9 @@ import java.util.List;
 public interface FilmeService {
     Filme save(FilmeDTO dto);
 
-    Filme findById(Long id);
+    Filme findById(String id);
 
-	void delete(long id);
+	void delete(String id);
 
     List<Filme> findLatestMovies();
 }

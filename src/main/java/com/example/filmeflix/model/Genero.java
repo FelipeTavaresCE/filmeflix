@@ -12,7 +12,7 @@ import javax.persistence.Entity;
 @Document
 public class Genero {
 
-	private Integer id;
+	private String id;
 	private String nome;
 
 }

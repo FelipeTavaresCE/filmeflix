@@ -11,7 +11,7 @@ public class FilmeDTO {
 
     private String nome;
     private String diretor;
-    private Integer generoId;
+    private String generoId;
     private String sipnose;
 
 }

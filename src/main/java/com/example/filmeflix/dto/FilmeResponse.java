@@ -7,10 +7,10 @@ import lombok.Data;
 @Data
 public class FilmeResponse {
 
-	private Long id;
+	private String id;
     private String nome;
     private String diretor;
-    private Integer generoId;
+    private String generoNome;
     private String sipnose;
 
 }

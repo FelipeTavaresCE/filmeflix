@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Validated
 @Tag(name = "Movies API", description = "")
@@ -49,7 +50,8 @@ public class FilmeController {
 		@ApiResponse(responseCode = "500", description = "Internal Error", content = @Content),
 		})
 	@DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> deleteMovie(@Parameter(required = true) @PathVariable("id") Long id){
+	public ResponseEntity<String> deleteMovie(@Parameter(required = true) @PathVariable("id") String id){
+		System.out.println("kkkk" + id);
 		service.delete(id);
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
@@ -62,9 +64,8 @@ public class FilmeController {
 		@ApiResponse(responseCode = "500", description = "Internal Error", content = @Content),
 		})
 	@GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Filme>> getMovies(){
-		List<Filme> movies = service.findLatestMovies();
-		return ResponseEntity.ok(movies);
+	public ResponseEntity<List<FilmeResponse>> getMovies(){
+		return ResponseEntity.ok(service.findLatestMovies().stream().map(FilmeUtil::parseFilmeIntoFilmeResponse).collect(Collectors.toList()));
 	}
 
 }

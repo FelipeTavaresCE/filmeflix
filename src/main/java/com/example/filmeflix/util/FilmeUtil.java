@@ -22,7 +22,7 @@ public class FilmeUtil {
 				.nome(filme.getNome())
 				.diretor(filme.getDiretor())
 				.sipnose(filme.getSipnose())
-				.generoId(filme.getGenero().getId())
+				.generoNome(filme.getGenero().getNome())
 				.build();
 	}
 
