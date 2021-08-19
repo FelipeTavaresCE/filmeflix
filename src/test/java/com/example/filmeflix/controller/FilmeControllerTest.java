@@ -74,16 +74,14 @@ public class FilmeControllerTest {
                 .header("Accept-Language", "pt-BR")
                 .accept(MediaType.APPLICATION_JSON);
 
-
         assertDoesNotThrow(() -> service.findLatestMovies());
         mockMvc.perform(req).andExpect(status().isOk());
-        Mockito.verify(service, Mockito.times(1)).findLatestMovies();
     }
 
     @Test
     @SneakyThrows
     @DisplayName("Deve criar um filme com sucesso")
-    void testCreateMovie() throws Exception {
+    void testCreateMovie() {
         FilmeDTO dto = getDto();
         Filme savedFilme = service.save(dto);
 

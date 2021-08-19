@@ -1,20 +1,10 @@
 package com.example.filmeflix.controller;
 
-import javax.validation.Valid;
-
-import com.example.filmeflix.model.Filme;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
 import com.example.filmeflix.dto.FilmeDTO;
 import com.example.filmeflix.dto.FilmeResponse;
+import com.example.filmeflix.model.Filme;
 import com.example.filmeflix.service.FilmeService;
 import com.example.filmeflix.util.FilmeUtil;
-
-import br.com.cvc.corp.salespartner.branch.dto.ApiError;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -22,7 +12,13 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Validated
