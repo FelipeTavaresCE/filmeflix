@@ -8,6 +8,7 @@ import com.example.filmeflix.model.Filme;
 import com.example.filmeflix.repository.FilmeRepository;
 import com.example.filmeflix.service.FilmeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,10 +28,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.springframework.data.mongodb.core.aggregation.ConditionalOperators.Cond.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @ExtendWith(SpringExtension.class)
@@ -54,7 +58,30 @@ public class FilmeControllerTest {
 
     private static final String FILME_URI = "/v1/filmes";
 
+
+    @SneakyThrows
     @Test
+    void deveConsultarUmaListaFilmes() {
+        List<Filme> filmes = new ArrayList<>();
+        filmes.add(Filme.builder()
+                .id(1l)
+                .build());
+
+        Mockito.when(service.findLatestMovies()).thenReturn(filmes);
+
+        MockHttpServletRequestBuilder req = MockMvcRequestBuilders
+                .delete(FILME_URI)
+                .header("Accept-Language", "pt-BR")
+                .accept(MediaType.APPLICATION_JSON);
+
+
+        assertDoesNotThrow(() -> service.findLatestMovies());
+        mockMvc.perform(req).andExpect(status().isOk());
+        Mockito.verify(service, Mockito.times(1)).findLatestMovies();
+    }
+
+    @Test
+    @SneakyThrows
     @DisplayName("Deve criar um filme com sucesso")
     void testCreateMovie() throws Exception {
         FilmeDTO dto = getDto();
@@ -75,6 +102,7 @@ public class FilmeControllerTest {
     }
     
     @Test
+    @SneakyThrows
 	@DisplayName("Deve excluir um filme que perdeu a relevância")
 	public void deleteMovieTest() throws Exception {
 		long filmeId = 1l;
@@ -94,6 +122,7 @@ public class FilmeControllerTest {
 	}
     
     @Test
+    @SneakyThrows
 	@DisplayName("Deve retornar erro ao tentar excluir um filme que não existe")
 	public void returnErrorOnDeleteNotExistentMovieTest() throws Exception {
 		long filmeId = 1l;
