@@ -66,7 +66,7 @@ public class FilmeController {
 		@ApiResponse(responseCode = "500", description = "Internal Error", content = @Content),
 		})
 	@GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Filme>> deleteMovie(){
+	public ResponseEntity<List<Filme>> getMovies(){
 		List<Filme> movies = service.findLatestMovies();
 		return ResponseEntity.ok(movies);
 	}
