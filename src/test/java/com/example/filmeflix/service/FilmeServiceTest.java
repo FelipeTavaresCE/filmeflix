@@ -20,7 +20,7 @@ public class FilmeServiceTest {
 	
 	@BeforeEach
 	public void setUp() {
-		this.service = new FilmeServiceImpl(repository);
+//		this.service = new FilmeServiceImpl(repository);
 	}
 	
 	

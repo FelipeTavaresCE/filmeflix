@@ -1,7 +1,11 @@
 package com.example.filmeflix.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.example.filmeflix.model.Genero;
+import com.example.filmeflix.repository.GeneroRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -18,10 +22,18 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class FilmeServiceImpl implements FilmeService {
 	private final FilmeRepository repository;
-	
+	@Autowired
+	private  GeneroRepository generoRepository;
+
+
 	@Override
-    public Filme save(FilmeDTO dto) {
-    	return repository.save(FilmeUtil.parseFilmeDTOIntoFilme(dto));
+    public Filme save(FilmeDTO dto)
+	{
+		Optional<Genero> genero = generoRepository.findById(dto.getGeneroId());
+		if(!genero.isEmpty())
+    		return repository.save(FilmeUtil.parseFilmeDTOIntoFilme(dto,genero.get()));
+
+		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Genero Not Found");
     }
 
 	@Override

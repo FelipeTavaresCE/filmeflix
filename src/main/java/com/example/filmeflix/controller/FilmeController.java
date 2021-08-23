@@ -2,7 +2,6 @@ package com.example.filmeflix.controller;
 
 import com.example.filmeflix.dto.FilmeDTO;
 import com.example.filmeflix.dto.FilmeResponse;
-import com.example.filmeflix.model.Filme;
 import com.example.filmeflix.service.FilmeService;
 import com.example.filmeflix.util.FilmeUtil;
 import io.swagger.v3.oas.annotations.Operation;
