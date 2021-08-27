@@ -37,7 +37,7 @@ public class FilmeUtil {
 				.nome(filme.getNome())
 				.diretor(filme.getDiretor())
 				.sipnose(filme.getSipnose())
-				.generoNome(filme.getGenero().getNome())
+				.generoNome(filme.getGenero() != null ? filme.getGenero().getNome() : "")
 				.build();
 	}
 

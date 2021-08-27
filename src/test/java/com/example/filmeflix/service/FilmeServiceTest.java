@@ -5,9 +5,11 @@ import com.example.filmeflix.model.Filme;
 import com.example.filmeflix.model.Genero;
 import com.example.filmeflix.repository.FilmeRepository;
 import com.example.filmeflix.repository.GeneroRepository;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -20,6 +22,7 @@ import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest()
@@ -75,6 +78,19 @@ public class FilmeServiceTest {
 		Filme filmeSaved = service.save(filmeDTO);
 
 		assertThat(filmeSaved, not(equalTo(null)));
+	}
+
+	@Test
+	public void deveApagarFilme() {
+		String id = "1";
+		
+		Filme filme = Filme.builder()
+				.id(id)
+				.build();
+
+		when(repository.findById(id)).thenReturn(Optional.of(filme));
+
+		assertDoesNotThrow(() -> service.delete(id));
 	}
 
 

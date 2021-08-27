@@ -50,7 +50,6 @@ public class FilmeController {
 		})
 	@DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> deleteMovie(@Parameter(required = true) @PathVariable("id") String id){
-		System.out.println("kkkk" + id);
 		service.delete(id);
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}

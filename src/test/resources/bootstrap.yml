@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: test
+    
+  application:
+    name: filmeflix
+          
+  main:
+    allow-bean-definition-overriding: true
